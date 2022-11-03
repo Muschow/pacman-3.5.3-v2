@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/sprites/pacman/Pacman_02.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/pacman/Pacman_03.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/pacman/Pacman_01.png" type="Texture" id=4]
+[ext_resource path="res://scripts/PacmanScript.cs" type="Script" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+} ]
+
+[node name="Pacman" instance=ExtResource( 1 )]
+scale = Vector2( 2.134, 2.134 )
+z_index = 1
+script = ExtResource( 5 )
+
+[node name="AnimatedSprite" parent="." index="0"]
+frames = SubResource( 1 )
+animation = "walk"
+playing = true
+
+[node name="UpRayF" type="RayCast2D" parent="." index="2" groups=["pacmanRays"]]
+position = Vector2( 6, 0 )
+enabled = true
+cast_to = Vector2( 0, -16 )
+collision_mask = 2
+
+[node name="UpRayB" type="RayCast2D" parent="." index="3" groups=["pacmanRays"]]
+position = Vector2( -6, 0 )
+enabled = true
+cast_to = Vector2( 0, -16 )
+collision_mask = 2
+
+[node name="DownRayF" type="RayCast2D" parent="." index="4" groups=["pacmanRays"]]
+position = Vector2( 6, 0 )
+enabled = true
+cast_to = Vector2( 0, 16 )
+collision_mask = 2
+
+[node name="DownRayB" type="RayCast2D" parent="." index="5" groups=["pacmanRays"]]
+position = Vector2( -6, 0 )
+enabled = true
+cast_to = Vector2( 0, 16 )
+collision_mask = 2
+
+[node name="RightRayF" type="RayCast2D" parent="." index="6" groups=["pacmanRays"]]
+position = Vector2( 0, -6 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+collision_mask = 2
+
+[node name="RightRayB" type="RayCast2D" parent="." index="7" groups=["pacmanRays"]]
+position = Vector2( 0, 6 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+collision_mask = 2
+
+[node name="LeftRayF" type="RayCast2D" parent="." index="8" groups=["pacmanRays"]]
+position = Vector2( 0, -6 )
+enabled = true
+cast_to = Vector2( -16, 0 )
+collision_mask = 2
+
+[node name="LeftRayB" type="RayCast2D" parent="." index="9" groups=["pacmanRays"]]
+position = Vector2( 0, 6 )
+enabled = true
+cast_to = Vector2( -16, 0 )
+collision_mask = 2
+
+[node name="Camera2D" type="Camera2D" parent="." index="10"]
+current = true
+limit_left = 0
+limit_right = 992
+limit_bottom = 1184
+limit_smoothed = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_top = 0.0
+drag_margin_bottom = 0.5
+editor_draw_limits = true
+editor_draw_drag_margin = true
